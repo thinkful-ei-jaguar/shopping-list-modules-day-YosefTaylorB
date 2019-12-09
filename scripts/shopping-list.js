@@ -1,4 +1,4 @@
-import store from './store.js'; 
+import store from './store.js';
 import item from './item.js';
 
 
@@ -43,8 +43,18 @@ const render = function () {
   $('.js-shopping-list').html(shoppingListItemsString);
 };
 
-const addItemToShoppingList = function (itemName) {
-  store.items.push({ id: cuid(), name: itemName, checked: false });
+const addItemToShoppingList = function (name) {
+  try {
+    item.validateName(name); 
+    const newItem = item.create(name);
+    store.items.push(newItem);
+    render ();
+  }
+  catch (e) {
+    console.log(
+      `Cannot add item: ${e.message}`
+    );
+  };
 };
 
 const handleNewItemSubmit = function () {
