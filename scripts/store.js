@@ -24,7 +24,10 @@ function findAndToggleChecked (id) {
 }
 
 function findAndDelete (id) {
-    this.items.filter(currentItem => currentItem.id !== id); 
+   //const newItems = this.items.filter(currentItem => currentItem.id !== id); 
+    //console.log(newItems);
+    const index = this.items.findIndex(item => item.id === id);
+    this.items.splice(index, 1);
 }
 
 export default {
@@ -33,5 +36,5 @@ export default {
     findById,
     addItem,
     findAndToggleChecked,
-    findAndDelete
+    findAndDelete,
 };
